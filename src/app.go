@@ -1,7 +1,9 @@
 package main
 
 import (
-	"github.com/gofiber/fiber"
+	"fmt"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 var app = App()
@@ -11,5 +13,6 @@ func App() *fiber.App {
 }
 
 func AppListen(p int) {
-	app.Listen(p)
+	port := fmt.Sprintf(":%d", p)
+	app.Listen(port)
 }
