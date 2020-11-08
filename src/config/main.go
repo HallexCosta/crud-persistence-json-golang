@@ -1,3 +1,11 @@
 package config
 
-var PersisenceName = "users.json"
+// AppConfig ...
+type AppConfig struct{}
+
+var _AppConfig = new(AppConfig)
+
+// NewAppConfig ...
+func NewAppConfig() *AppConfig {
+	return _AppConfig
+}
