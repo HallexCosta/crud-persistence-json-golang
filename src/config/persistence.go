@@ -1,6 +1,7 @@
 package config
 
 import (
+	"crud-without-database-golang/src/helpers"
 	"fmt"
 )
 
@@ -18,5 +19,5 @@ func (app *AppConfig) NewPersistence(name string) *Persistence {
 
 // InitPersistence ...
 func (persist *Persistence) InitPersistence() {
-	fmt.Println(persist.Name)
+	helpers.CreateFile(persist.Name)
 }
