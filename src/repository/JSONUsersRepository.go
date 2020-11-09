@@ -25,21 +25,17 @@ type UserRepository struct {
 
 // Save ...
 func (userRepository *UserRepository) Save(user *entity.User) {
-	var users []*entity.User
-
 	var persist PersistenceFile = &Persistence{
 		Name: config.ImportAppConfig().Persistence.Name,
 	}
 
-	usersJSON := persist.ReadFile()
-
-	_ = json.Unmarshal(usersJSON, &users)
+	var users []*entity.User = userRepository.FindAll()
 
 	users = append(users, user)
 
-	usersAddedNewUserJSON, _ := json.Marshal(users)
+	updatedUsers, _ := json.MarshalIndent(users, "", "\t")
 
-	persist.WriteFile(usersAddedNewUserJSON)
+	persist.WriteFile(updatedUsers)
 }
 
 // FindAll ...
