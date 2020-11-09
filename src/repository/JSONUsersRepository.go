@@ -14,6 +14,7 @@ type PersistenceFile = helpers.PersistenceFile
 // Persistence ...
 type Persistence = helpers.Persistence
 
+// UserRepositoryInterface ...
 type UserRepositoryInterface interface {
 	Save()
 	FindAll() []*entity.User
