@@ -51,7 +51,9 @@ func (userRepository *UserRepository) FindAll() []*entity.User {
 		Name: config.ImportAppConfig().Persistence.Name,
 	}
 
-	_ = json.Unmarshal([]byte(persist.ReadFile()), &users)
+	getUsers := persist.ReadFile()
+
+	_ = json.Unmarshal(getUsers, &users)
 
 	fmt.Printf("%+v", users)
 
