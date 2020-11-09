@@ -33,7 +33,7 @@ func (userRepository *UserRepository) Save(user *entity.User) {
 
 	usersJSON := persist.ReadFile()
 
-	_ = json.Unmarshal([]byte(usersJSON), &users)
+	_ = json.Unmarshal(usersJSON, &users)
 
 	users = append(users, user)
 
