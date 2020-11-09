@@ -14,6 +14,11 @@ type PersistenceFile = helpers.PersistenceFile
 // Persistence ...
 type Persistence = helpers.Persistence
 
+type UserRepositoryInterface interface {
+	Save()
+	FindAll() []*entity.User
+}
+
 // UserRepository ...
 type UserRepository struct {
 }
