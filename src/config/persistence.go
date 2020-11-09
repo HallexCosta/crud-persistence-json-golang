@@ -5,6 +5,9 @@ import (
 	"fmt"
 )
 
+// PersistenceFile ...
+type PersistenceFile = helpers.PersistenceFile
+
 // Persistence ...
 type Persistence struct {
 	Name string
@@ -12,12 +15,15 @@ type Persistence struct {
 
 // NewPersistence ...
 func (app *AppConfig) NewPersistence(name string) *Persistence {
-	return &Persistence{
-		Name: fmt.Sprintf("%s.json", name),
-	}
+	app.Persistence.Name = fmt.Sprintf("%s.json", name)
+	return &app.Persistence
 }
 
 // InitPersistence ...
 func (persist *Persistence) InitPersistence() {
-	helpers.CreateFile(persist.Name)
+	var persistence PersistenceFile = &helpers.Persistence{
+		Name: ImportAppConfig().Persistence.Name,
+	}
+
+	persistence.CreateFile()
 }
