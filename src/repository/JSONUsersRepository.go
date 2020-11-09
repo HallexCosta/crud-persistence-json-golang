@@ -16,7 +16,7 @@ type Persistence = helpers.Persistence
 
 // UserRepositoryInterface ...
 type UserRepositoryInterface interface {
-	Save()
+	Save(user *entity.User)
 	FindAll() []*entity.User
 }
 
