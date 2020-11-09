@@ -2,8 +2,8 @@ package file
 
 import "io/ioutil"
 
-func Read(filename string) ([]byte, bool) {
+func Read(filename string) []byte {
 	fileContent, _ := ioutil.ReadFile(filename)
 
-	return fileContent, true
+	return fileContent
 }
