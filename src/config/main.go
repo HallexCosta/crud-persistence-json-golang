@@ -1,11 +1,13 @@
 package config
 
 // AppConfig ...
-type AppConfig struct{}
+type AppConfig struct {
+	Persistence Persistence
+}
 
 var _AppConfig = new(AppConfig)
 
-// NewAppConfig ...
-func NewAppConfig() *AppConfig {
+// ImportAppConfig ...
+func ImportAppConfig() *AppConfig {
 	return _AppConfig
 }
