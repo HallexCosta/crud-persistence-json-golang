@@ -7,11 +7,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// UserRepositoryInterface ...
+type UserRepositoryInterface = repository.UserRepositoryInterface
+
+// UserRepository ...
+type UserRepository = repository.UserRepository
+
 // ListUsers ...
 func ListUsers(context *fiber.Ctx) error {
 	var users []*entity.User
 
-	userRepository := new(repository.UserRepository)
+	var userRepository UserRepositoryInterface = new(UserRepository)
 
 	users = userRepository.FindAll()
 
