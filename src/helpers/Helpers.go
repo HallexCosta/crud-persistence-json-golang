@@ -1,26 +1,34 @@
 package helpers
 
-import file "crud-without-database-golang/src/helpers/File"
+import (
+	file "crud-without-database-golang/src/helpers/File"
+)
+
+// PersistenceFile ...
+type PersistenceFile interface {
+	CreateFile()
+	ReadFile() []byte
+	WriteFile(content []byte)
+}
 
 // Persistence ...
-type Persistence interface {
-	CreateFile(filename string)
-	ReadFile(filename string)
-	WriteFile(filename string, content string)
+type Persistence struct {
+	Name string
 }
 
 // CreateFile ...
-func CreateFile(filename string) {
-	file.Create(filename)
+func (persist *Persistence) CreateFile() {
+	file.Create(persist.Name)
 }
 
 // ReadFile ...
-func ReadFile(filename string) string {
-	b, _ := file.Read(filename)
-	return string(b[:])
+func (persist *Persistence) ReadFile() []byte {
+	b := file.Read(persist.Name)
+
+	return b
 }
 
 // WriteFile ...
-func WriteFile(filename string, content string) {
-	file.Write(filename, []byte(content))
+func (persist *Persistence) WriteFile(content []byte) {
+	file.Write(persist.Name, content)
 }
