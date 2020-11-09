@@ -5,7 +5,6 @@ import (
 	"crud-without-database-golang/src/entity"
 	"crud-without-database-golang/src/helpers"
 	"encoding/json"
-	"fmt"
 )
 
 // PersistenceFile ...
@@ -54,8 +53,6 @@ func (userRepository *UserRepository) FindAll() []*entity.User {
 	getUsers := persist.ReadFile()
 
 	_ = json.Unmarshal(getUsers, &users)
-
-	fmt.Printf("%+v", users)
 
 	return users
 }
