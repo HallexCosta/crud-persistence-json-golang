@@ -3,7 +3,8 @@ package entity
 // User ...
 type User struct {
 	ID       int    `json:"id"`
-	name     string `json:"name"`
-	email    string `json:"email"`
-	password string `json:"password"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Age      int    `json:"age"`
 }
