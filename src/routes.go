@@ -7,6 +7,7 @@ import (
 // Routes ...
 func Routes() {
 	app.Get("/users", feature.ListUsers)
+	app.Post("/users", feature.CreateUser)
 
 	// app.Get("/", func(context *fiber.Ctx) error {
 	// 	User := new(struct {
