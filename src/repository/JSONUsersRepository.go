@@ -16,6 +16,7 @@ type Persistence = helpers.Persistence
 // UserRepositoryInterface ...
 type UserRepositoryInterface interface {
 	Save(user *entity.User)
+	FindByID(id int) *entity.User
 	FindAll() []*entity.User
 }
 
@@ -36,6 +37,19 @@ func (userRepository *UserRepository) Save(user *entity.User) {
 	updatedUsers, _ := json.MarshalIndent(users, "", "\t")
 
 	persist.WriteFile(updatedUsers)
+}
+
+// FindByID ...
+func (userRepository *UserRepository) FindByID(id int) *entity.User {
+	var users []*entity.User = userRepository.FindAll()
+
+	for _, user := range users {
+		if user.ID == id {
+			return user
+		}
+	}
+
+	return &entity.User{}
 }
 
 // FindAll ...
