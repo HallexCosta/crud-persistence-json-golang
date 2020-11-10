@@ -16,7 +16,7 @@ type Persistence = helpers.Persistence
 // UserRepositoryInterface ...
 type UserRepositoryInterface interface {
 	Save(user *entity.User)
-	FindByID(id int) *entity.User
+	FindByID(id int) (*entity.User, bool)
 	FindAll() []*entity.User
 }
 
@@ -40,16 +40,16 @@ func (userRepository *UserRepository) Save(user *entity.User) {
 }
 
 // FindByID ...
-func (userRepository *UserRepository) FindByID(id int) *entity.User {
+func (userRepository *UserRepository) FindByID(id int) (*entity.User, bool) {
 	var users []*entity.User = userRepository.FindAll()
 
 	for _, user := range users {
 		if user.ID == id {
-			return user
+			return user, true
 		}
 	}
 
-	return &entity.User{}
+	return &entity.User{}, false
 }
 
 // FindAll ...
