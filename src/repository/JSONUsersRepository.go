@@ -18,6 +18,7 @@ type UserRepositoryInterface interface {
 	Save(user *entity.User)
 	FindByID(id int) (*entity.User, bool)
 	FindAll() []*entity.User
+	DeleteByID(id int)
 }
 
 // UserRepository ...
@@ -65,4 +66,23 @@ func (userRepository *UserRepository) FindAll() []*entity.User {
 	_ = json.Unmarshal(getUsers, &users)
 
 	return users
+}
+
+// DeleteByID ...
+func (userRepository *UserRepository) DeleteByID(id int) {
+	var persist PersistenceFile = &Persistence{
+		Name: config.ImportAppConfig().Persistence.Name,
+	}
+
+	var users []*entity.User
+
+	for _, user := range userRepository.FindAll() {
+		if user.ID != id {
+			users = append(users, user)
+		}
+	}
+
+	usersJSON, _ := json.MarshalIndent(users, "", "\t")
+
+	persist.WriteFile(usersJSON)
 }
