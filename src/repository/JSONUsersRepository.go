@@ -56,11 +56,11 @@ func (userRepository *UserRepository) FindByID(id int) (*entity.User, bool) {
 
 // FindAll ...
 func (userRepository *UserRepository) FindAll() []*entity.User {
-	var users []*entity.User
-
 	var persist PersistenceFile = &Persistence{
 		Name: config.ImportAppConfig().Persistence.Name,
 	}
+
+	var users []*entity.User
 
 	getUsers := persist.ReadFile()
 
