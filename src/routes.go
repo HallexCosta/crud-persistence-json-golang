@@ -8,6 +8,7 @@ import (
 func Routes() {
 	app.Get("/users", feature.ListUsers)
 	app.Post("/users", feature.CreateUser)
+	app.Put("/users/:id", feature.EditUser)
 	app.Delete("/users/:id", feature.DeleteUser)
 
 	// app.Get("/", func(context *fiber.Ctx) error {
