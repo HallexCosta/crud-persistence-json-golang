@@ -16,6 +16,7 @@ func DeleteUser(context *fiber.Ctx) error {
 
 	if isUserFound == false {
 		return context.Status(400).JSON(fiber.Map{
+			"success": false,
 			"message": "User not found",
 		})
 	}
